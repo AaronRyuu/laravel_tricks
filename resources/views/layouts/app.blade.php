@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/assets/vendor/amazeui/css/amazeui.min.css"/>
     <link rel="stylesheet" href="/assets/css/common.css">
+    @yield('stylesheets')
 </head>
 
 <body>

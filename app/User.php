@@ -36,4 +36,25 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    // 一个user 有很多 issues。
+    public function issues()
+    {
+        return $this->hasMany('App\Models\Issue');
+    }
+
+    // 一个 user有很多 comments
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    /**
+     * 用户头像
+     * @return mixed|string
+     */
+    public function avatar()
+    {
+        return $this->avatar ? $this->avatar : "https://www.gravatar.com/avatar/" . md5(strtolower($this->email)) . "?d=retro&s=48";
+    }
 }

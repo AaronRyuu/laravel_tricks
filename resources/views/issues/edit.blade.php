@@ -9,22 +9,8 @@
             <hr>
         </div>
 
-        <form class="am-form" action="{{route('issues.update', $issue->id)}}" method="post">
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
-            <fieldset>
-                <div class="am-form-group">
-                    <label>标题</label>
-                    <input type="text" placeholder="输入活动标题" name="title" value="{{$issue->title}}">
-                </div>
-
-                <div class="am-form-group">
-                    <label>内容</label>
-                    <textarea rows="5" name="content">{{$issue->content}}</textarea>
-                </div>
-
-                <button type="submit" class="am-btn am-btn-default">提交</button>
-            </fieldset>
-        </form>
+        {!! Form::model($issue, ['route' => ['issues.update', $issue->id], 'method' => 'put', 'class' => 'am-form']) !!}
+        @include('issues._form')
+        {!! Form::close() !!}
     </div>
 @endsection

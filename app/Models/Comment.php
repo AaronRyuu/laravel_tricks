@@ -6,15 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['issue_id', 'name', 'email', 'content'];
+    protected $fillable = ['issue_id', 'user_id', 'content'];
 
     public function issue()
     {
         return $this->belongsTo('App\Models\Issue');
     }
 
-    public function avatar()
+    //每一条评论，都是属于一个用户的
+    public function user()
     {
-        return "https://www.gravatar.com/avatar/" . md5(strtolower($this->email)) . "?d=retro&s=48";
+        return $this->belongsTo('App\User');
     }
+
 }

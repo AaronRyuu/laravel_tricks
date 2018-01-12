@@ -9,7 +9,7 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $issues = Issue::orderBy('created_at', 'desc')->take(2)->get();
+        $issues = Issue::with('user', 'comments')->orderBy('created_at', 'desc')->take(2)->get();
         return view('welcome.index')->with('issues', $issues);
     }
 
